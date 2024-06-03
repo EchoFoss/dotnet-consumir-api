@@ -14,9 +14,10 @@ public class ProdutoController(ApiService apiService) : Controller
         return View(produtos);
     }
 
-    public IActionResult Create()
+    public async Task<IActionResult> Create(Produto produto)
     {
-        return View();
+        await _apiService.PostProduto(produto);
+        return RedirectToAction(nameof(Index));
     }
 
     public async Task<IActionResult> GetAll()

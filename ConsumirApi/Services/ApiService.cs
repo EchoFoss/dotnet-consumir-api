@@ -1,4 +1,7 @@
 using System.Runtime.InteropServices.JavaScript;
+using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using WebApi.Model;
 
 namespace ConsumirApi.Services;
@@ -29,5 +32,15 @@ public class ApiService(HttpClient httpClient)
     public async Task<HttpResponseMessage> DeleteProduto(int id)
     {
         return await httpClient.DeleteAsync($"{EnderecoApi}/{id}");
+    }
+
+    public async Task<HttpResponseMessage> PostProduto(Produto produto)
+    {
+        var json = JsonSerializer.Serialize(produto);
+        HttpContent jsonContent = new StringContent(json, Encoding.UTF8, "application/json");
+        var res = await httpClient.PostAsync($"{EnderecoApi}", jsonContent);
+
+        res.EnsureSuccessStatusCode();
+        return res;
     }
 }
