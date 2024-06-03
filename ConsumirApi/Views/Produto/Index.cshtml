@@ -1,0 +1,27 @@
+@model List<WebApi.Model.Produto>
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<h1>
+    @ViewData["Title"]
+</h1>
+
+<p>
+    <a class="btn btn-success" asp-action="Create">
+        Adicionar Produtos
+    </a>
+</p>
+
+<table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Nome</th>
+        <th>Preço</th>
+        <th>Ações</th>
+    </tr>
+    </thead>
+</table>

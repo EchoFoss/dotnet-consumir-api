@@ -1,0 +1,21 @@
+﻿services:
+  webapplication1:
+    image: webapplication1
+    build:
+      context: .
+      dockerfile: WebApplication1/Dockerfile
+
+  webapi:
+    image: webapi
+    build:
+      context: .
+      dockerfile: WebApi/Dockerfile
+
+  database:
+    container_name: produtos_db
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: Produtos
+    ports:
+      - '5432:5432'
